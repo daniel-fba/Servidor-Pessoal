@@ -1,0 +1,26 @@
+services:
+  caddy:
+    image: caddy:${CADDY_VERSION}
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - /home/myserver/opt/caddy/config:/etc/caddy
+      - /home/myserver/opt/caddy/site:/srv
+      - caddy_data:/data
+      - caddy_config:/config
+    environment:
+      - TZ=America/Sao_Paulo
+    container_name: caddy
+    networks:
+      - proxy
+
+volumes:
+  caddy_data:
+  caddy_config:
+
+networks:
+  proxy:
+    external: true

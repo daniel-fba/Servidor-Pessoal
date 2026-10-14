@@ -1,0 +1,26 @@
+/opt/
+    .gitignore
+    .env.example
+    caddy/
+        config/
+        site/
+        docker-compose.yml
+        Caddyfile
+        .env
+    adguardhome/
+    homepage/
+    immich-app/
+    pinepods/
+    seafile/
+        docker-compose.yml
+        .env
+        db/
+    syncthing/
+
+/mnt/dados/
+    immich/photos/
+    pinepods/downloads/
+    pinepods/backups/
+    seafile/data/
+    seafile/seadoc-data/
+    syncthing/
