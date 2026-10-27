@@ -1,0 +1,53 @@
+services:
+  db:
+    container_name: db
+    image: postgres:18
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGDATA: ${PGDATA}
+    volumes:
+      - /opt/pinepods/pgdata:/var/lib/pgdata
+    restart: always
+
+  valkey:
+    image: valkey/valkey:8-alpine
+    ports:
+          - "6379:6379"
+    restart: always
+
+  pinepods:
+    image: madeofpendletonwool/pinepods:latest
+    container_name: pinepods
+    ports:
+      - "8040:8040"
+    environment:
+      # Basic server info
+      SEARCH_API_URL: ${SEARCH_API_URL}
+      PEOPLE_API_URL: ${PEOPLE_API_URL}
+      HOSTNAME: ${HOSTNAME}
+      # Database
+      DB_TYPE: postgresql
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      # Valkey cache
+      VALKEY_HOST: valkey
+      VALKEY_PORT: 6379
+      DEBUG_MODE: false
+      # Run as your host user so downloads stay accessible (optional)
+      PUID: ${UID:-911}
+      PGID: ${GID:-911}
+      # Local timezone (optional, used for logs)
+      TZ: "America/Sao_Paulo"
+    volumes:
+      - /mnt/dados/pinepods/downloads:/opt/pinepods/downloads
+      - /mnt/dados/pinepods/backups:/opt/pinepods/backups
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+    depends_on:
+      - db
+      - valkey

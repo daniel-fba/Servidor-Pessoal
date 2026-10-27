@@ -1,0 +1,27 @@
+{
+    email danielfba@prontomail.com
+}
+
+# Adguardhome
+adguard.saiga-torino.ts.net {
+    tls internal
+    reverse_proxy adguardhome:3000
+}
+
+# Homepage
+home.saiga-torino.ts.net {
+    tls internal
+    reverse_proxy homepage:3030
+}
+
+# Syncthing
+sync.saiga-torino.ts.net {
+    tls internal
+    reverse_proxy syncthing:8384
+}
+
+# Pinepods
+pods.saiga-torino.ts.net {
+    tls internal
+    reverse_proxy pinepods:8040
+}
