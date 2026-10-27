@@ -1,16 +1,7 @@
----
-id: cd16ce14-e039-4c11-a4ca-fce5dd6d0bbb
-title: README
-tags: []
-pinned: false
-created: 2026-10-26T21:29:16.470667096+00:00
-modified: 2026-10-27T12:25:18.188664002+00:00
----
-# README
+![fastfetch](./prints/fastfetch.png)
 
-![](.helixnotes/attachments/20c896ed-009b-451f-ba52-3aeb404ec759_pasted-image.png)Um servidor pessoal, construido com hardware reutilizado: uma instancia de Ubuntu Server rodando containeres Docker, expostos somente via rede privadao Tailscale. Feito ambo para uso pessoal, e como projeto de aprendizagem.
+Um servidor pessoal, construido com hardware reutilizado: uma instancia de Ubuntu Server rodando containeres Docker, expostos somente via rede privadao Tailscale. Feito ambo para uso pessoal, e como projeto de aprendizagem.
 
-<!-- -->
 ## Hardware
 
 HP EliteDesk SFF - Intel Core i5-4670
@@ -25,50 +16,46 @@ IP local reservado via DHCP estático no roteador
 
 (Primeira tentativa usando um Lenovo 63 falhou, a placa-mãe estava com defeito, desligando após alguns minutos e só voltando a funcionar depois de horas parado. Deu para reaproveitar as memórias e hd)
 
-<!-- -->
 ## Arquitetura
 
 Convenção: um diretório por serviço em /opt/<serviço> (Armazena as definições de infraestrutura como código com seu próprio docker-compose.yml + .env);
 
 Dados e arquivos em /mnt/dados/<serviço>
 
-<!-- -->
 /opt/
 
-&emsp;adguardhome/
+├── adguardhome/
 
-&emsp;homepage/
+├── homepage/
 
-&emsp;immich-app/
+├── immich-app/
 
-&emsp;nextcloud/
+├── nextcloud/
 
-&emsp;pinepods/
+├── pinepods/
 
-&emsp;seafile/ (banco de dados no SSD, arquivos no HDD)
+├── seafile/ (banco de dados no SSD, arquivos no HDD)
 
-&emsp;syncthing/
+├── syncthing/
 
-&emsp;.env.example
 
-<!-- -->
 /mnt/dados/
 
-&emsp;immich/photos/
+├── immich/photos/
 
-&emsp;nextcloud/data/
+├── nextcloud/data/
 
-&emsp;pinepods/{downloads,backups}/
+├── pinepods/{downloads,backups}/
 
-&emsp;seafile/{data,seadoc-data}/
+├── seafile/{data,seadoc-data}/
 
-&emsp;syncthing/
+├── syncthing/
 
-<!-- -->
 ## Segurança e Redes
 
-Nenhuma porta do roteador é exposta diretamente para a internet pública, comunicação externa é feita exclusivamente através de uma rede Mesh VPN privada via Tailscale, apenas dispositivos autorizados acessam os painéis de controle e serviços. SSH feito somente via chave privada.
-![](.helixnotes/attachments/e8770250-6451-4934-94e0-4b9e3bad0330_pasted-image.png)
+Nenhuma porta do roteador é exposta diretamente para a internet pública, comunicação externa é feita exclusivamente através de uma rede Mesh VPN privada via Tailscale, apenas dispositivos autorizados acessam os painéis de controle e serviços. SSH feito somente via chave privada. 
+
+![tailscale](./prints/tailscalestatus.png)
 
 ## Stack
 
@@ -84,4 +71,5 @@ Nenhuma porta do roteador é exposta diretamente para a internet pública, comun
 | StirlingPDF | Ferramenta de ediçao de pdf | Feito |
 | Homepage | Painel de acesso para os apps no servidor | Planejado |
 | Nextcloud | Alternativa para nuvem + pacote office completo | Descartado |
-![](.helixnotes/attachments/2f3b4dca-7b2c-4f3b-af32-324be7f0e115_pasted-image.png)
+
+![docker](./prints/dockerps.png)
