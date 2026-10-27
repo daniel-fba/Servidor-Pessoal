@@ -13,10 +13,12 @@ services:
 
   valkey:
     image: valkey/valkey:8-alpine
+    ports:
+          - "6379:6379"
     restart: always
 
   pinepods:
-    image: madeofpendletonwool/pinepods:latest #mudar para uma versão fixa depois
+    image: madeofpendletonwool/pinepods:latest
     container_name: pinepods
     ports:
       - "8040:8040"
@@ -44,13 +46,8 @@ services:
     volumes:
       - /mnt/dados/pinepods/downloads:/opt/pinepods/downloads
       - /mnt/dados/pinepods/backups:/opt/pinepods/backups
+      - /etc/localtime:/etc/localtime:ro
     restart: always
     depends_on:
       - db
       - valkey
-    networks:
-      - proxy
-
-networks:
-      proxy:
-        external: true

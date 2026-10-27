@@ -1,6 +1,5 @@
-# Seafile 13 CE — compose único (/opt/seafile/docker-compose.yml)
-# Merge de seafile-server.yml + seadoc.yml. Acesso via tailscale serve (sem proxy).
-# Requer .env no mesmo diretório.
+# Stack única (db + redis + seafile + seadoc)
+# Proxy/TLS: tailscale serve no host → http://127.0.0.1:80
 
 services:
   db:
@@ -12,7 +11,7 @@ services:
       - MYSQL_LOG_CONSOLE=true
       - MARIADB_AUTO_UPGRADE=1
     volumes:
-      - "${SEAFILE_MYSQL_VOLUME:-/opt/seafile/db}:/var/lib/mysql"
+      - ${SEAFILE_MYSQL_VOLUME:-/opt/seafile/db}:/var/lib/mysql
     networks:
       - seafile-net
     healthcheck:
@@ -46,13 +45,10 @@ services:
     image: ${SEAFILE_IMAGE:-seafileltd/seafile-mc:13.0-latest}
     container_name: seafile
     restart: unless-stopped
-    # Porta publicada no host para o tailscale serve (http://127.0.0.1:80).
-    # Se a 80 já estiver ocupada, troque para outra (ex.: "8080:80") e aponte
-    # o serve para ela — a URL ts.net continua sem porta.
     ports:
-      - "80:80"
+      - "127.0.0.1:80:80"
     volumes:
-      - ${SEAFILE_VOLUME:-/opt/seafile-data}:/shared
+      - ${SEAFILE_VOLUME:-/mnt/dados/seafile/data}:/shared
     environment:
       - SEAFILE_MYSQL_DB_HOST=${SEAFILE_MYSQL_DB_HOST:-db}
       - SEAFILE_MYSQL_DB_PORT=${SEAFILE_MYSQL_DB_PORT:-3306}
@@ -107,7 +103,7 @@ services:
     container_name: seadoc
     restart: unless-stopped
     volumes:
-      - ${SEADOC_VOLUME:-/opt/seadoc-data/}:/shared
+      - ${SEADOC_VOLUME:-/mnt/dados/seafile/seadoc-data}:/shared
     environment:
       - DB_HOST=${SEAFILE_MYSQL_DB_HOST:-db}
       - DB_PORT=${SEAFILE_MYSQL_DB_PORT:-3306}

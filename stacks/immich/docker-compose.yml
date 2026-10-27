@@ -23,7 +23,7 @@ services:
     env_file:
       - .env
     ports:
-      - '2283:2283'
+      - '127.0.0.1:2283:2283' # exposição só via Tailscale serve
     depends_on:
       - redis
       - database
