@@ -1,6 +1,6 @@
 ![fastfetch](./prints/fastfetch.png)
 
-Um servidor pessoal, construido com hardware reutilizado: uma instancia de Ubuntu Server rodando containeres Docker, expostos somente via rede privadao Tailscale. Feito ambo para uso pessoal, e como projeto de aprendizagem.
+Um servidor pessoal, construido com hardware reutilizado: uma instancia de Ubuntu Server rodando containeres Docker, expostos somente via rede privada Tailscale. Feito ambo para uso pessoal, e como projeto de aprendizagem.
 
 ## Hardware
 
