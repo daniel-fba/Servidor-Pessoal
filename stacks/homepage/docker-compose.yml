@@ -3,10 +3,13 @@ services:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
     ports:
-      - 3030:3030
+      - 3030:3000
     volumes:
       - /opt/homepage/config:/app/config # Make sure your local config directory exists
       - /var/run/docker.sock:/var/run/docker.sock:ro # (optional) For docker integrations
+      - /opt/homepage/icons:/app/public/icons
     environment:
       HOMEPAGE_ALLOWED_HOSTS: ${ALLOWED_HOST} # required, may need port. See gethomepage.dev/installation/#homepage_allowed_hosts
+      PUID: $PUID
+      PGID: $PGID
     restart: unless-stopped

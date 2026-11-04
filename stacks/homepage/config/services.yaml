@@ -1,0 +1,33 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/services/
+
+- Arquivos e Fotos:
+    - Seafile:
+        icon: seafile.svg
+        href: https://dservidor.saiga-torino.ts.net:8446
+        description: Nuvem pessoal
+    - Immich:
+        icon: immich.svg
+        href: https://dservidor.saiga-torino.ts.net:8445
+        description: Fotos e Vídeos
+
+- Aplicativos:
+    - Pinepods:
+        icon: pinepods.webp
+        href: https://dservidor.saiga-torino.ts.net:8443
+        description: Gerenciador de podcasts
+    - Stirling PDF:
+        icon: stirling-pdf.svg
+        href: https://dservidor.saiga-torino.ts.net:8444
+        description: Editor de PDFs
+
+- Configurações:
+    - Cockpit:
+        icon: cockpit.svg
+        href: https://dservidor:9090
+        description: Painel do servidor
+    - AdGuard Home:
+        icon: adguard-home.svg
+        href: https://dservidor.saiga-torino.ts.net:8448
+        description: Bloqueador de anúncios e rastreadores
