@@ -14,8 +14,8 @@ services:
       # and the path to the right of the colon is where the data is
       # available to ABS in Docker. You can change these lines freely
       # or add additional mounts for additional libraries.
-      - /mnt/dados/audiobookshelf/audiobooks:/audiobooks
-      - /mnt/dados/audiobookshelf/podcasts:/podcasts
+      - ${AUDIOBOOKS_PATH}:/audiobooks
+      - ${PODCASTS_PATH}:/podcasts
     environment:
       - TZ=America/Sao_Paulo
       # Add other environment variables here

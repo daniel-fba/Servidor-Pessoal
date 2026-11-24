@@ -13,6 +13,10 @@
         description: Fotos e Vídeos
 
 - Aplicativos:
+    - Audiobookshelf:
+        icon: audiobookshelf.svg
+        href: https://dservidor.saiga-torino.ts.net:8447
+        description: Audiobooks e podcasts
     - Pinepods:
         icon: pinepods.webp
         href: https://dservidor.saiga-torino.ts.net:8443
