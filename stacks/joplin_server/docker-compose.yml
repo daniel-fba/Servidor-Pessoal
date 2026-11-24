@@ -27,7 +27,7 @@ services:
             - full
             - server
         volumes:
-            - ./data/postgres:/var/lib/postgresql/data
+            - /opt/joplin_server/data/postgres:/var/lib/postgresql/data
         networks:
             - app-network
         # (Optional): Allow accessing the database using an external tool (e.g. `psql`) from the host:
@@ -46,7 +46,7 @@ services:
             - db
             - transcribe
         ports:
-            - "22300:22300"
+            - "127.0.0.1:22300:22300"
         networks:
             - app-network
             - shared-network
@@ -68,7 +68,7 @@ services:
         profiles:
             - full
         volumes:
-            - ./data/transcribe-postgres:/var/lib/postgresql/data
+            - /opt/joplin_server/data/transcribe-postgres:/var/lib/postgresql/data
         networks:
             - transcribe-network
         ports:
@@ -98,8 +98,8 @@ services:
         deploy:
             resources:
                 limits:
-                    memory: 16G
-                    cpus: '4'
+                    memory: 4G
+                    cpus: '2'
         # Security: read-only root filesystem with only images folder writable
         read_only: true
         tmpfs:
